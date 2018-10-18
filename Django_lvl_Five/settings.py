@@ -27,7 +27,7 @@ SECRET_KEY = 'knkfemme&pbj_$@!=5x1mdimg-$ar%lsdc5o$(vd$(x4#z+ov3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['entrery.pythonanywhere.com']
 
 
 # Application definition
