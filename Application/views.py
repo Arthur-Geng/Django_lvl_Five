@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from Application.forms import UserForm, UserProfileInfoForm
+from django.views.generic import View, TemplateView
 
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
@@ -8,9 +9,18 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+class IndexView(TemplateView):
+    template_name = 'basic_app/index.html'
 
-def index(request):
-    return render(request, 'basic_app/index.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['inject'] = 'injection'
+        return context
+
+
+
+# def index(request):
+#     return render(request, 'basic_app/index.html')
 
 
 def register(request):
