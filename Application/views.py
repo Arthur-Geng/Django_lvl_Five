@@ -102,14 +102,55 @@ from django.http import HttpResponse
 from urllib import request
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
+from selenium import webdriver
 import re
 import datetime
 
 # Create your views here.
 
 def show(request):
+    driver = webdriver.Chrome('C://chromedriver')
+    url_to_parse = 'https://auto.ria.com/legkovie/subaru/?page=2'
+    driver.get(url_to_parse)
+    html = driver.execute_script("return document.documentElement.outerHTML")
+    soup = BeautifulSoup(html, "html.parser").find_all('section', {"class": "ticket-item new__ticket t paid"})
+    for block in soup:
+        print(block.find("a", {"class": "m-link-ticket"}).get("href"))
 
     return render(request, 'Application/Main.html')
+#parse each currency
+#     for link in links:
+#         #get and read link into html
+#         req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
+#         html = urlopen(req).read()
+#         #convert to BS4
+#         bs = BeautifulSoup(html, "html.parser")
+#         #use soup to find all tables
+#         table = bs.find("table")
+#         #use soup to find all inner tr and put content into rows[]
+#         rows = table.findAll(lambda tag: tag.name == 'tr')
+#         #go throu each element in rows using regex to match what we need
+#         for element in rows:
+#             match = re.search("mfcur-nbu-full-wrap", str(element))
+#             #if match by class name use another regex
+#             if match:
+#                 nums = re.findall(r'\s\d{2}\.\d{3}\s', str(element))
+#                 #if matching regex contains nums we will get [] of matching nums
+#                 for n in nums:
+#                     #and then append to list
+#                     mylist.append(n)
+#             else:
+#                 print()
+#     #put into context
+#     context1 = {
+#         "usd_buy": mylist[0],
+#         "usd_sell": mylist[1],
+#         "euro_buy": mylist[2],
+#         "euro_sell": mylist[3],
+#         "head": head,
+#         "date": datetime.datetime.now(),
+#         #"tweets": tweets
+#     }
 # def show(request):
 #
 #     #CoinMarketCal

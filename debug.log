@@ -1,0 +1,2 @@
+[1027/213708.352:ERROR:process_reader_win.cc(123)] NtOpenThread: {Отказ доступа} Процесс запросил доступ к объекту, однако права доступа не предоставлены. (0xc0000022)
+[1027/213708.353:ERROR:exception_snapshot_win.cc(88)] thread ID 5292 not found in process
