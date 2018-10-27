@@ -1,0 +1,14 @@
+{% extends 'Application/application_base.html' %}
+
+{% block body_block %}
+    <div class='jumbotron'>
+        <h1>List of schools 111111</h1>
+        <ol>
+            {% for school in schools %}
+                <h2>
+                    <li>{{ school.name }}</li>
+                </h2>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

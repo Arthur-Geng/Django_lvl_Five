@@ -20,9 +20,10 @@ from Application import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('application/', include('Application.urls')),
+    path('application/', include('Application.urls', namespace='application')),
     # path('', views.index, name='index'),
     path('', views.IndexView.as_view(), name='index'),
     path('logout', views.user_logout, name = 'logout'),
     path('special', views.special, name = 'special'),
+
 ]
